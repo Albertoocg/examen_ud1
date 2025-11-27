@@ -85,6 +85,37 @@
         unset($_SESSION['errores']);
     }
 
+    // Los botones + y - de las unidades
+    if(isset($_POST['mas']) || isset($_POST['menos'])){ // Miro si alguno de los botones ha sido pulsado
+
+        if(isset($_POST['mas'])){ // si mas tiene valor es que ha pulsado el +, si no pues el -
+            $valor = "mas";
+            $refrecibida = $_POST['mas'];
+        } else {
+            $valor = "menos";
+            $refrecibida = $_POST['menos'];
+        }
+
+
+        for($i = 0; $i < count($albaran); $i++) {
+            if($albaran[$i]['referencia'] == $refrecibida){ // Recorro el albarán para buscar ese producto por referencia e incrementar o decrementar las unidades
+                if($valor == "mas"){
+                    $albaran[$i]['unidades']++;
+                }
+
+                if($valor == "menos" && $albaran[$i]['unidades'] > 0){
+                    $albaran[$i]['unidades']--;
+                }
+
+            }
+        }
+
+        $_SESSION['albaran'] = $albaran; // Luego guardo los cambios en la sesion
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
 
 
     $totaluds = 0;
