@@ -46,7 +46,46 @@
 
     <?php
     global $conceptos;
-    
+
+    // Agregar a la tabla y si no se puede lanzar un error
+    if(isset($_POST["referencia"]) && isset($_POST["concepto"]) && isset($_POST["precio_unidad"]) && isset($_POST["unidades"])){
+        //                                                                                                                       Estos isset son para que no salga el mensaje de error cuando pulso los botones
+        if($_POST["referencia"] != "" && $_POST["concepto"] != "" && $_POST["precio_unidad"] != "" && isset($_POST["unidades"]) != "" && !isset($_POST["mas"]) && !isset($_POST["menos"]) && $_POST['precio_unidad'] >= 0){
+
+            $referencia = $_POST["referencia"]; // Recojo y añado a la tabla si están todos los conceptos y ninguno está vacio
+            $concepto = $_POST["concepto"];
+            $precio_unidad = $_POST["precio_unidad"];
+            $unidades = $_POST["unidades"];
+
+            $albaran[] = [
+                    'referencia' => $referencia,
+                    'concepto' => $concepto,
+                    'precio_unidad' => $precio_unidad,
+                    'unidades' => $unidades
+            ];
+
+            $_SESSION["albaran"] = $albaran;
+
+            $version++;
+            $_SESSION["numero_version"] = $version; // Si se añade correctamente aumento la versión y la guardo en la sesion
+
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
+
+        } else {
+            $_SESSION["errores"] = "No se ha podido añadir el producto al albarán";
+        }
+
+
+    }
+
+    // Los errores
+    if (isset($_SESSION['errores'])) {
+        echo("<p style='color: red'>" . $_SESSION['errores'] . "</p>");
+        unset($_SESSION['errores']);
+    }
+
+
 
     $totaluds = 0;
     $totalbruto = 0;
