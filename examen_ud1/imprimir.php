@@ -80,7 +80,7 @@ include 'datos.php';
             print("<td>" . $neto . " €</td>");
             print("</tr>");
 
-            
+
         ?>
 </table>
 </body>
