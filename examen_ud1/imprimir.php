@@ -79,6 +79,8 @@ include 'datos.php';
             print("<td colspan='5' align='right'>Neto: </td>");
             print("<td>" . $neto . " €</td>");
             print("</tr>");
+
+            
         ?>
 </table>
 </body>
