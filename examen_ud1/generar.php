@@ -163,6 +163,7 @@
     <br>
     <input type="hidden" name="reiniciar" value="reiniciar">
     <input type="submit" value="Eliminar todo">
+
 </form>
 </body>
     </html>
