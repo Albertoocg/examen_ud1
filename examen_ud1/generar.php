@@ -135,6 +135,8 @@
         print("<td>-" . $descuentoapli . " €</td>");
         print("</tr>");
 
+        // 7 Eliminar
+
         print("<tr>");
         print("<td colspan='5' align='right'>IVA: </td>");
         print("<td>" . $ivaapli . " €</td>");
